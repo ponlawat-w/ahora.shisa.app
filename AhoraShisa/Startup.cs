@@ -7,9 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-
 namespace AhoraShisa
 {
     public class Startup
@@ -34,6 +31,11 @@ namespace AhoraShisa
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(option => option
+                .WithOrigins("https://clock.shisa.app")
+                .WithMethods("GET")
+                .AllowAnyHeader());
 
             app.UseMvc();
         }
